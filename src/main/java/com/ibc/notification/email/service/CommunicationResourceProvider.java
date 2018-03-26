@@ -128,8 +128,8 @@ public class CommunicationResourceProvider implements IResourceProvider {
 	 * The getResourceType method comes from IResourceProvider, and must be overridden to indicate what type of resource this provider supplies.
 	 */
 	@Override
-	public Class<Patient> getResourceType() {
-		return Patient.class;
+	public Class<Communication> getResourceType() {
+		return Communication.class;
 	}
 
 	/**
