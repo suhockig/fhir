@@ -6,6 +6,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.hl7.fhir.r4.utils.ResourceUtilities;
+
 import ca.uhn.fhir.model.api.ResourceMetadataKeyEnum;
 import ca.uhn.fhir.model.dstu2.composite.HumanNameDt;
 import ca.uhn.fhir.model.dstu2.resource.Communication;
@@ -30,6 +32,7 @@ import ca.uhn.fhir.rest.server.IResourceProvider;
 import ca.uhn.fhir.rest.server.exceptions.InvalidRequestException;
 import ca.uhn.fhir.rest.server.exceptions.ResourceNotFoundException;
 import ca.uhn.fhir.rest.server.exceptions.UnprocessableEntityException;
+
 
 /**
  * This is a resource provider which stores Patient resources in memory using a HashMap. This is obviously not a production-ready solution for many reasons, 
@@ -121,7 +124,9 @@ public class CommunicationResourceProvider implements IResourceProvider {
 		//addNewVersion(theCommunication, id);
 
 		// Let the caller know the ID of the newly created resource
-		return new MethodOutcome(new IdDt(1));
+		//MethodOutcome m = new MethodOutcome(new IdDt(2L));
+		//m.setResource(theCommunication);
+		return new MethodOutcome(new IdDt(2L)).setResource(theCommunication);
 	}
 
 	/**
@@ -148,6 +153,10 @@ public class CommunicationResourceProvider implements IResourceProvider {
 			throw new UnprocessableEntityException(outcome);
 			
 		}*/
+	}
+	
+	public static void main (String[] args) {
+		MethodOutcome m = new CommunicationResourceProvider().createCommunication(new Communication());
 	}
 
 }
